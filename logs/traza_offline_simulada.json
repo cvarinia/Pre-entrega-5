@@ -1,0 +1,300 @@
+{
+  "generado": "2026-09-09T18:12:13+00:00",
+  "thread_id": "demo-offline",
+  "modelo": "modelo-simulado (sin API)",
+  "limite_recursion": 10,
+  "total_de_turnos": 3,
+  "turnos": [
+    {
+      "turno": 1,
+      "titulo": "Razonamiento multi-paso",
+      "pregunta": "Quiero hacer una cena con pollo para 4 personas, algo que no lleve mas de una hora. Deci cual me conviene y cuantas calorias tiene en total el menu.",
+      "herramientas_invocadas": [
+        "buscar_recetas_por_ingrediente",
+        "obtener_receta",
+        "calcular_nutricion_menu"
+      ],
+      "cantidad_de_llamadas_a_herramientas": 3,
+      "pasos": [
+        {
+          "paso": 1,
+          "tipo": "usuario",
+          "contenido": "Quiero hacer una cena con pollo para 4 personas, algo que no lleve mas de una hora. Deci cual me conviene y cuantas calorias tiene en total el menu."
+        },
+        {
+          "paso": 2,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "buscar_recetas_por_ingrediente",
+          "argumentos": {
+            "ingrediente": "pollo",
+            "max_resultados": 5
+          }
+        },
+        {
+          "paso": 3,
+          "tipo": "resultado_herramienta",
+          "herramienta": "buscar_recetas_por_ingrediente",
+          "resultado": {
+            "cantidad": 5,
+            "recetas": [
+              {
+                "id": "r001",
+                "nombre": "Milanesas de pollo al horno",
+                "tiempo_minutos": 45,
+                "porciones_base": 4
+              },
+              {
+                "id": "r002",
+                "nombre": "Pollo al verdeo",
+                "tiempo_minutos": 40,
+                "porciones_base": 4
+              },
+              {
+                "id": "r003",
+                "nombre": "Tarta de pollo y choclo",
+                "tiempo_minutos": 60,
+                "porciones_base": 6
+              },
+              {
+                "id": "r004",
+                "nombre": "Pollo al limon con papas al romero",
+                "tiempo_minutos": 55,
+                "porciones_base": 4
+              },
+              {
+                "id": "r015",
+                "nombre": "Wok de pollo y vegetales",
+                "tiempo_minutos": 30,
+                "porciones_base": 3
+              }
+            ],
+            "siguiente_paso": "Para conocer ingredientes, calorias o restricciones alimentarias de alguna de estas recetas, llama a obtener_receta con su id."
+          }
+        },
+        {
+          "paso": 4,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "obtener_receta",
+          "argumentos": {
+            "receta_id": "r004"
+          }
+        },
+        {
+          "paso": 5,
+          "tipo": "resultado_herramienta",
+          "herramienta": "obtener_receta",
+          "resultado": {
+            "id": "r004",
+            "nombre": "Pollo al limon con papas al romero",
+            "ingredientes": [
+              "pollo",
+              "limon",
+              "papa",
+              "romero",
+              "ajo",
+              "aceite de oliva"
+            ],
+            "porciones_base": 4,
+            "calorias_por_porcion": 350,
+            "tiempo_minutos": 55,
+            "etiquetas": [
+              "sin_lacteos",
+              "sin_gluten"
+            ]
+          }
+        },
+        {
+          "paso": 6,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "calcular_nutricion_menu",
+          "argumentos": {
+            "receta_ids": [
+              "r004"
+            ],
+            "comensales": 4
+          }
+        },
+        {
+          "paso": 7,
+          "tipo": "resultado_herramienta",
+          "herramienta": "calcular_nutricion_menu",
+          "resultado": {
+            "comensales": 4,
+            "detalle": [
+              {
+                "id": "r004",
+                "nombre": "Pollo al limon con papas al romero",
+                "calorias_por_porcion": 350,
+                "factor_de_escala": 1.0,
+                "calorias_para_el_grupo": 1400
+              }
+            ],
+            "calorias_totales_menu": 1400,
+            "calorias_por_comensal": 350,
+            "advertencias": []
+          }
+        },
+        {
+          "paso": 8,
+          "tipo": "respuesta_final",
+          "contenido": "Te recomiendo el Pollo al limon con papas al romero (r004): 55 minutos, sin lacteos y sin gluten. Para 4 personas son 1400 kcal en total, 350 kcal por comensal."
+        }
+      ]
+    },
+    {
+      "turno": 2,
+      "titulo": "Memoria del hilo (thread_id)",
+      "pregunta": "Y si la quiero sin lacteos? Cambia algo de lo que me dijiste?",
+      "herramientas_invocadas": [
+        "obtener_receta"
+      ],
+      "cantidad_de_llamadas_a_herramientas": 1,
+      "pasos": [
+        {
+          "paso": 1,
+          "tipo": "usuario",
+          "contenido": "Y si la quiero sin lacteos? Cambia algo de lo que me dijiste?"
+        },
+        {
+          "paso": 2,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "obtener_receta",
+          "argumentos": {
+            "receta_id": "r002"
+          }
+        },
+        {
+          "paso": 3,
+          "tipo": "resultado_herramienta",
+          "herramienta": "obtener_receta",
+          "resultado": {
+            "id": "r002",
+            "nombre": "Pollo al verdeo",
+            "ingredientes": [
+              "pollo",
+              "cebolla de verdeo",
+              "crema de leche",
+              "vino blanco",
+              "manteca"
+            ],
+            "porciones_base": 4,
+            "calorias_por_porcion": 510,
+            "tiempo_minutos": 40,
+            "etiquetas": [
+              "contiene_lacteos",
+              "sin_gluten"
+            ]
+          }
+        },
+        {
+          "paso": 4,
+          "tipo": "respuesta_final",
+          "contenido": "El pollo al limon ya es sin lacteos, asi que no cambia nada. La otra opcion que habia con pollo, el pollo al verdeo (r002), si lleva crema y manteca."
+        }
+      ]
+    },
+    {
+      "turno": 3,
+      "titulo": "Ciclo de retorno ante error",
+      "pregunta": "Contame los ingredientes de la receta r099.",
+      "herramientas_invocadas": [
+        "obtener_receta",
+        "buscar_recetas_por_ingrediente"
+      ],
+      "cantidad_de_llamadas_a_herramientas": 2,
+      "pasos": [
+        {
+          "paso": 1,
+          "tipo": "usuario",
+          "contenido": "Contame los ingredientes de la receta r099."
+        },
+        {
+          "paso": 2,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "obtener_receta",
+          "argumentos": {
+            "receta_id": "r099"
+          }
+        },
+        {
+          "paso": 3,
+          "tipo": "resultado_herramienta",
+          "herramienta": "obtener_receta",
+          "resultado": {
+            "error": "No existe ninguna receta con el id 'r099'.",
+            "sugerencia": "Los ids validos tienen el formato 'r001'. Si no conoces el id, usa primero buscar_recetas_por_ingrediente para obtenerlo.",
+            "ids_de_ejemplo": [
+              "r001",
+              "r002",
+              "r003",
+              "r004",
+              "r005"
+            ]
+          }
+        },
+        {
+          "paso": 4,
+          "tipo": "decision_del_agente",
+          "accion": "llamar_herramienta",
+          "herramienta": "buscar_recetas_por_ingrediente",
+          "argumentos": {
+            "ingrediente": "pollo",
+            "max_resultados": 5
+          }
+        },
+        {
+          "paso": 5,
+          "tipo": "resultado_herramienta",
+          "herramienta": "buscar_recetas_por_ingrediente",
+          "resultado": {
+            "cantidad": 5,
+            "recetas": [
+              {
+                "id": "r001",
+                "nombre": "Milanesas de pollo al horno",
+                "tiempo_minutos": 45,
+                "porciones_base": 4
+              },
+              {
+                "id": "r002",
+                "nombre": "Pollo al verdeo",
+                "tiempo_minutos": 40,
+                "porciones_base": 4
+              },
+              {
+                "id": "r003",
+                "nombre": "Tarta de pollo y choclo",
+                "tiempo_minutos": 60,
+                "porciones_base": 6
+              },
+              {
+                "id": "r004",
+                "nombre": "Pollo al limon con papas al romero",
+                "tiempo_minutos": 55,
+                "porciones_base": 4
+              },
+              {
+                "id": "r015",
+                "nombre": "Wok de pollo y vegetales",
+                "tiempo_minutos": 30,
+                "porciones_base": 3
+              }
+            ],
+            "siguiente_paso": "Para conocer ingredientes, calorias o restricciones alimentarias de alguna de estas recetas, llama a obtener_receta con su id."
+          }
+        },
+        {
+          "paso": 6,
+          "tipo": "respuesta_final",
+          "contenido": "No existe ninguna receta con el id r099. Los ids validos con pollo son r001, r002, r003, r004 y r015. Cual queres ver?"
+        }
+      ]
+    }
+  ],
+  "_nota": "Traza estructural generada con un modelo SIMULADO (tests/test_grafo_offline.py), sin llamadas a la API. Muestra el formato y el ciclo del grafo. La traza de la corrida real con Gemini es logs/traza_ejemplo.json, generada con: python -m scripts.run_demo"
+}

@@ -1,0 +1,11 @@
+# Dependencias de la pre-entrega 5 (probadas con Python 3.12)
+langgraph>=1.2,<2
+langgraph-checkpoint-sqlite>=3.1,<4   # trae AsyncSqliteSaver y aiosqlite
+langchain-core>=1.6,<2
+python-dotenv>=1.0
+
+# Clientes de LLM. El proyecto funciona con cualquiera de los dos: se elige con
+# la variable PROVEEDOR del .env. Se pueden instalar ambos o solo el que uses
+# (las importaciones en agente/llm.py son perezosas).
+langchain-anthropic>=1.7,<2           # PROVEEDOR=anthropic
+langchain-google-genai>=4.4,<5        # PROVEEDOR=gemini
