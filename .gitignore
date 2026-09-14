@@ -1,0 +1,25 @@
+# Secretos: NUNCA subir la API key
+.env
+
+# Estado local del agente (base de checkpoints de LangGraph)
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+checkpoints.sqlite
+
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Editor / sistema operativo
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
